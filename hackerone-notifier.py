@@ -1,15 +1,11 @@
 #!/usr/bin/env python
 
 '''
-    File name: hackerone-notifier.py
-    Author: Vincent De Schutter
-    Date created: 11/03/2017
-    Date last modified: 11/03/207
-    Python Version: 2.7
+Pushover friendly fork of https://github.com/VincentDS/HackerOne-Notifier
 '''
 
-from pushbullet import Pushbullet
 import urllib2
+import requests
 import json
 import pickle
 import time
@@ -17,7 +13,8 @@ import os.path
 import config
 
 dump_file = os.path.dirname(os.path.realpath(__file__)) + "/programs.dat"
-pb = Pushbullet(config.PUSHBULLET_API_KEY)
+ptoken = "PUSHOVER_TOKEN"
+pkey = "PUSHOVER_APP_KEY"
 
 def create_url():
   url = "https://hackerone.com/programs/search?"
@@ -47,12 +44,14 @@ def check_new_programs(old, new):
   return len(new) - len(old)
 
 def notificate_message(string):
-  pb.push_note(string, "")
+  payload = {'token': ptoken, 'user': pkey, 'message': string, 'sound': 'incoming'}
+  r = requests.post("https://api.pushover.net/1/messages.json", params=payload)
 
 def notificate_program(program):
   text = program['name'] + " is now on HackerOne!"
   url = "https://hackerone.com" + program['url']
-  pb.push_link(text, url)
+  payload = {'token': ptoken, 'user': pkey, 'message': text, 'sound': 'incoming'}
+  r = requests.post("https://api.pushover.net/1/messages.json", params=payload)
 
 def loop():
   while True:

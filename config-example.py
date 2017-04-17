@@ -1,6 +1,3 @@
-# API key of your pushbullet account
-PUSHBULLET_API_KEY = ''
-
 # Refresh rate of the program in seconds
 REFRESH_RATE = 300
 
