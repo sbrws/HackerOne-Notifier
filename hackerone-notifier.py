@@ -70,7 +70,7 @@ def main():
     programs = retrieve_programs()
     save_programs(programs)
 
-  notificate_message("HackerOne-Notifier started!")
+  notificate_message("Notifier started!")
   loop()
 
 
