@@ -4,7 +4,6 @@ A Pushover-compatible fork of https://github.com/VincentDS/HackerOne-Notifier
 
 HackerOne-Notifier is a simple application which sends out a notification to your favorite device whenever a new program is available on HackerOne. Notifications are send out using Pushover. Currently the application supports the following functions: 
 
-- Use HackerOne's filters to filter out uninteresting programs.
 - Initial notification when the app launches. 
 - Change the interval rate on which the app checks for new programs.
 
